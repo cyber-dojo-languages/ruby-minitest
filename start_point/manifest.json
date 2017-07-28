@@ -12,5 +12,7 @@
 
   "display_name": "Ruby, MiniTest",
 
-  "image_name": "cyberdojofoundation/ruby_mini_test"
+  "image_name": "cyberdojofoundation/ruby_mini_test",
+
+  "runner_choice": "stateless"
 }
