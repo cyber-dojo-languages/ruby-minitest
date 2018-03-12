@@ -1,4 +1,4 @@
-require './hiker'
+require_relative 'hiker'
 require 'minitest/autorun'
 
 class TestHiker < MiniTest::Test
