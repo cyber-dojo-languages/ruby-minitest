@@ -36,9 +36,9 @@ class SimpleCov::Formatter::Console
   def format(result)
     root = Dir.pwd
 
-    puts
-    puts "COVERAGE: #{pct(result)} -- #{result.covered_lines}/#{result.total_lines} lines in #{result.files.size} files"
-    puts
+    puts "COVERAGE: #{pct(result)} --" +
+      " #{result.covered_lines}/#{result.total_lines}" +
+      " lines in #{result.files.size} files"
 
     if root.nil? then
       return
