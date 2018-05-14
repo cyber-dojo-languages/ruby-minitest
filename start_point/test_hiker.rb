@@ -1,5 +1,6 @@
 require_relative 'coverage'
 require_relative 'hiker'
+require "minitest/autorun"
 
 class TestHiker < MiniTest::Test
 

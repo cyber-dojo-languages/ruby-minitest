@@ -121,6 +121,3 @@ end
 
 SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
-
-require "minitest/autorun"
-
