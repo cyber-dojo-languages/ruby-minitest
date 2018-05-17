@@ -1,7 +1,7 @@
 require 'hirb'
 require "simplecov"
 
-# https://github.com/chetan/simplecov-console
+# Based on https://github.com/chetan/simplecov-console
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Copyright (c) 2012 Chetan Sarva
 #
@@ -34,14 +34,22 @@ class SimpleCov::Formatter::Console
   end
 
   def format(result)
+    IO.write('coverage.txt', to_s(result).join("\n"))
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  def to_s(result)
     root = Dir.pwd
 
-    puts "COVERAGE: #{pct(result)} --" +
+    lines = [ '' ]
+
+    lines << "COVERAGE: #{pct(result)} --" +
       " #{result.covered_lines}/#{result.total_lines}" +
       " lines in #{result.files.size} files"
 
     if root.nil? then
-      return
+      return lines
     end
 
     files = result.files.sort{ |a,b| a.covered_percent <=> b.covered_percent }
@@ -57,7 +65,7 @@ class SimpleCov::Formatter::Console
     }
 
     if files.nil? or files.empty? then
-      return
+      return lines
     end
 
     table = files.map do |f|
@@ -69,7 +77,7 @@ class SimpleCov::Formatter::Console
     end
 
     if table.size > 15 then
-      puts "showing bottom (worst) 15 of #{table.size} files"
+      lines << "showing bottom (worst) 15 of #{table.size} files"
       table = table.slice(0, 15)
     end
 
@@ -77,13 +85,16 @@ class SimpleCov::Formatter::Console
 
     s = Hirb::Helpers::Table.render(table, table_options).split(/\n/)
     s.pop
-    puts s.join("\n").gsub(/\d+\.\d+%/) { |m| m }
+    lines << s.join("\n").gsub(/\d+\.\d+%/) { |m| m }
 
     if covered_files > 0 then
-      puts "#{covered_files} file(s) with 100% coverage not shown"
+      lines << "#{covered_files} file(s) with 100% coverage not shown"
     end
 
+    lines
   end
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - -
 
   def missed(missed_lines)
     groups = {}
@@ -113,6 +124,8 @@ class SimpleCov::Formatter::Console
     group_str
   end
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - -
+
   def pct(obj)
     sprintf("%6.2f%%", obj.covered_percent)
   end
@@ -121,3 +134,4 @@ end
 
 SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
+
