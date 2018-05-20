@@ -34,7 +34,7 @@ class SimpleCov::Formatter::Console
   end
 
   def format(result)
-    IO.write('coverage.txt', to_s(result).join("\n"))
+    puts to_s(result)
   end
 
   # - - - - - - - - - - - - - - - - - - - - - - - - -
