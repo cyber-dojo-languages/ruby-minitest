@@ -34,6 +34,9 @@ class SimpleCov::Formatter::Console
   end
 
   def format(result)
+    # Write coverage info to stdout - makes it possible
+    # for the red-amber-green lambdas to use regexps that
+    # monitor coverage stats.
     puts to_s(result)
   end
 
