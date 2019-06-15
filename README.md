@@ -1,4 +1,5 @@
-# Ruby, minitest
 
-![Build Status](https://travis-ci.org/cyber-dojo-languages/ruby-minitest.svg?branch=master)
+[![CircleCI](https://circleci.com/gh/cyber-dojo-languages/ruby-minitest.svg?style=svg)](https://circleci.com/gh/cyber-dojo-languages/ruby-minitest)
 
+# display_name="Ruby, MiniTest"
+# image_name="cyberdojofoundation/ruby_mini_test"
