@@ -39,11 +39,12 @@ end
 
 SimpleCov.command_name("MiniTest")
 SimpleCov.formatter = SimpleCov::Formatter::FileWriter
+SimpleCov.start
 
 at_exit do
   # Can't use SimpleCov.at_exit; when the call reaches
   # FileWriter.format() there is no longer an exception
+  # I'd like to only write the coverage report if the
+  # traffic-light is green but it seems there is no way.
   $exception_raised = true
 end
-
-SimpleCov.start
