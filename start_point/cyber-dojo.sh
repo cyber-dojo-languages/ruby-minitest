@@ -1,5 +1,4 @@
 set -e
-
 # remove existing coverage report
 [ -e report/coverage.txt ] && rm report/coverage.txt
 # turn off colour for new coverge report
