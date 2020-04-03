@@ -37,6 +37,7 @@ module SimpleCov
   end
 end
 
+SimpleCov.command_name("MiniTest")
 SimpleCov.formatter = SimpleCov::Formatter::FileWriter
 
 at_exit do
