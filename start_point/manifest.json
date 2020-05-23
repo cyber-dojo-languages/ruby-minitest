@@ -11,10 +11,5 @@
   ],
   "filename_extension": [ ".rb" ],
   "max_seconds": 10,
-  "tab_size": 2,
-  "hidden_filenames":
-  [
-    "coverage/\\.last_run\\.json",
-    "coverage/\\.resultset\\.json"
-  ]
+  "tab_size": 2
 }
