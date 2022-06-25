@@ -1,4 +1,4 @@
-FROM cyberdojofoundation/ruby:520f570
+FROM cyberdojofoundation/ruby:8b00263
 LABEL maintainer=jon@jaggersoft.com
 
 COPY red_amber_green.rb /usr/local/bin
