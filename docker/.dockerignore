@@ -1,2 +1,4 @@
 *
-!red_amber_green.rb
+!install.sh
+!record_iseq_cache.rb
+!serve_iseq_cache.rb

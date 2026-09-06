@@ -1,2 +1,25 @@
 FROM ghcr.io/cyber-dojo-languages/ruby:3dc1645
 LABEL maintainer=jon@jaggersoft.com
+
+COPY install.sh .
+RUN ./install.sh && rm ./install.sh
+
+# A kata's test run replays the compiled instruction sequences this leaves in
+# /iseq instead of parsing minitest, mocha and simplecov out of their source
+# again, which is most of what a test run costs. Both halves read the
+# directory from here, so neither can be pointed somewhere the other is not.
+#
+# The recording runs after install.sh so that the gems installed there are in
+# it. It also has to run once per architecture, which it does: this image is
+# built for linux/amd64 and linux/arm64 separately, and an instruction sequence
+# only loads back into the ruby that wrote it.
+ENV ISEQ_CACHE_DIR=/iseq
+COPY record_iseq_cache.rb /tmp/
+RUN ruby /tmp/record_iseq_cache.rb \
+ && rm -f /tmp/record_iseq_cache.rb
+
+# RUBYOPT rather than a require in the kata, so that the hook is installed
+# before a kata's first require rather than after it. Set last, so that the
+# recording above runs against an empty cache it cannot read from.
+COPY serve_iseq_cache.rb /usr/local/bin/
+ENV RUBYOPT=-r/usr/local/bin/serve_iseq_cache.rb
