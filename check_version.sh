@@ -25,5 +25,5 @@ check_gem_version()
   fi
 }
 
-check_gem_version minitest 6.0.0
-check_gem_version mocha 3.1.0
+check_gem_version minitest 6.0
+check_gem_version mocha 3.1
