@@ -1,4 +1,4 @@
-FROM ghcr.io/cyber-dojo-languages/ruby:01cb308
+FROM ghcr.io/cyber-dojo-languages/ruby:c51712e
 LABEL maintainer=jon@jaggersoft.com
 
 COPY install.sh .
